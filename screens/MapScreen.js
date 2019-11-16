@@ -3,6 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux'
 import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
+import { Header } from 'native-base';
 
 
 
@@ -26,6 +27,7 @@ class MapScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header></Header>
         <MapView
       initialRegion={this.state.initialRegion}
       style={styles.mapStyle}>
