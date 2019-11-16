@@ -8,7 +8,7 @@ import {
 
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../screens/HomeScreen';
-import MapView from '../screens/MapView';
+import MapScreen from '../screens/MapScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 
 const config = Platform.select({
@@ -41,7 +41,7 @@ HomeStack.path = '';
 
 const MapStack = createStackNavigator(
   {
-    Map: MapView,
+    Map: MapScreen,
   },
   config
 );

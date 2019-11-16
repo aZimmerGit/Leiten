@@ -7,21 +7,21 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
+import {connect} from 'react-redux'
 import { Card, Body, CardItem, Text } from 'native-base';
-import storage from '../store/memStore';
 
-function HomeScreen() {
-  console.log(storage[0].streetAddress);
+const HomeScreen = props => {
+  // console.log(props);
   return (
     <View style={styles.container}>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        {storage.map(place => {
+        {props.places.map(place => {
           return (
             <Card key={place.id}>
-              <CardItem header bordered>
+              <CardItem header bordered button onPress={() => alert(`${place.phone}`)}>
                 <Text>{place.name}</Text>
               </CardItem>
               <CardItem>
@@ -45,8 +45,6 @@ function HomeScreen() {
 HomeScreen.navigationOptions = {
   header: null,
 };
-
-export default HomeScreen
 
 const styles = StyleSheet.create({
   container: {
@@ -137,3 +135,13 @@ const styles = StyleSheet.create({
     color: '#2e78b7',
   },
 });
+
+const mapStateToProps = state => {
+  return {
+    places: state.places,
+  };
+};
+
+
+
+export default connect(mapStateToProps)(HomeScreen)
