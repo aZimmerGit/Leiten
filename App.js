@@ -8,6 +8,10 @@ import { Header } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import AppNavigator from './navigation/AppNavigator';
 import store from './store/store';
+import * as firebase from 'firebase';
+import firebaseConfig from './firebase/apiKeys';
+
+firebase.initializeApp(firebaseConfig);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
