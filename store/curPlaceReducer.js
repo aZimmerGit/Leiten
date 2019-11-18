@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 
 //action define
 const SET_CURPLACES = 'SETCURPLACES'

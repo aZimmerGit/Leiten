@@ -3,17 +3,14 @@ import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import placesReducer from './placesReducer'
 import curPlaceReducer from './curPlaceReducer'
+import regionReducer from './regionReducer'
 
 
 const reducer = combineReducers({
   places: placesReducer,
   curPlace: curPlaceReducer,
-  // initialRegion: {
-  //   latitude: 41.8900,
-  //   longitude: -87.6570,
-  //   latitudeDelta: 0.1960,
-  //   longitudeDelta: 0.0421,
-  // },
+  region: regionReducer,
+
 })
 
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

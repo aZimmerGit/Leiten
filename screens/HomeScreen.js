@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-import * as WebBrowser from 'expo-web-browser';
 import React from 'react';
 import {
   Platform,
@@ -8,17 +7,40 @@ import {
   View,
 } from 'react-native';
 import {connect} from 'react-redux'
-import { Card, Body, CardItem, Text } from 'native-base';
+import { Card, Body, CardItem, Text, Button, Header, Left, Title, Icon } from 'native-base';
+import {fetchAllPlaces} from '../store/placesReducer'
 
-const HomeScreen = props => {
-  // console.log(props);
+class HomeScreen extends React.Component {
+  constructor() {
+    super()
+    this.retPlaces = this.retPlaces.bind(this)
+  }
+
+  componentDidMount(){
+  }
+
+  retPlaces(){
+    this.props.getAllPlaces()
+  }
+
+  render() {
   return (
     <View style={styles.container}>
+      <Header>
+      <Left>
+            <Button transparent>
+              <Icon name='sort' type='MaterialIcons'/>
+            </Button>
+          </Left>
+          <Body>
+            <Title>Header</Title>
+          </Body>
+      </Header>
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        {props.places.map(place => {
+        {this.props.places.map(place => {
           return (
             <Card key={place.id}>
               <CardItem header bordered button onPress={() => alert(`${place.phone}`)}>
@@ -37,9 +59,17 @@ const HomeScreen = props => {
             </Card>
           );
         })}
+        <Card>
+          <CardItem>
+            <Button onPress={()=>this.retPlaces()}>
+              <Text>FSData</Text>
+            </Button>
+          </CardItem>
+        </Card>
       </ScrollView>
     </View>
   );
+      }
 }
 
 HomeScreen.navigationOptions = {
@@ -142,6 +172,10 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllPlaces: () => dispatch(fetchAllPlaces())
+  }
+}
 
-
-export default connect(mapStateToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

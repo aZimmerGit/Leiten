@@ -5,19 +5,9 @@ import MapView, { Marker } from 'react-native-maps';
 import { StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Header } from 'native-base';
 
-
-
 class MapScreen extends React.Component {
   constructor() {
     super()
-    this.state = {
-      initialRegion: {
-        latitude: 41.8900,
-        longitude: -87.6570,
-        latitudeDelta: 0.1960,
-        longitudeDelta: 0.0421,
-      },
-    }
   }
 
   componentDidMount() {
@@ -27,9 +17,9 @@ class MapScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header></Header>
+        <Header />
         <MapView
-      initialRegion={this.state.initialRegion}
+      initialRegion={this.props.region}
       style={styles.mapStyle}>
 
         {this.props.places.map(mark => {
@@ -66,7 +56,7 @@ const mapStateToProps = state => {
   return {
     places: state.places,
     curPlace: state.curPlace,
-    // initialRegion: state.initialRegion,
+    region: state.region
   }
 }
 
